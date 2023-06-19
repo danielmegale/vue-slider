@@ -4,20 +4,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
-<body>
+<body id="root">
     <div class="container">
         <div id="carousel">
             <i class="bi bi-arrow-left-circle" id="prev"></i>
-            <div class="gallery">   
+            <div class="gallery">
+                <figure v-for="(img,i) in images" v-show=" currentIndex === i" >
+                    <img :src="img.image" :alt="img.text">
+                    <figcaption>
+                        <h1>{{img.title}}</h1>
+                        <p>{{img.text}}</p> 
+                    </figcaption>
+                </figure>
             </div>
             <i class="bi bi-arrow-right-circle" id="next"></i>
         </div>
         <div id="thumbnails">
-            <div class="th-gallery">
+            <img v-for="(img,i) in images" :src="img.image" alt=""
+            :class="{opacity : currentIndex === i}">
             </div>
         </div>
     </div>
