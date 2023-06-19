@@ -12,7 +12,7 @@
 <body id="root">
     <div class="container">
         <div id="carousel">
-            <i class="bi bi-arrow-left-circle" id="prev"></i>
+            <i class="bi bi-arrow-left-circle" id="prev" @click="goBack"></i>
             <div class="gallery">
                 <figure v-for="(img,i) in images" v-show=" currentIndex === i" >
                     <img :src="img.image" :alt="img.text">
@@ -22,7 +22,7 @@
                     </figcaption>
                 </figure>
             </div>
-            <i class="bi bi-arrow-right-circle" id="next"></i>
+            <i class="bi bi-arrow-right-circle" id="next" @click="goNext"></i>
         </div>
         <div id="thumbnails">
             <img v-for="(img,i) in images" :src="img.image" alt=""

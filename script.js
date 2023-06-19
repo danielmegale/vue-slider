@@ -32,6 +32,14 @@ const app = Vue.createApp({
                 }
             ]
         };
+    },
+    methods:{
+        goNext(){
+            this.currentIndex++;
+        },
+        goBack(){
+            this.currentIndex--;
+        }
     }
 });
 
