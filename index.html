@@ -12,21 +12,21 @@
 <body id="root">
     <div class="container">
         <div id="carousel">
-            <i class="bi bi-arrow-left-circle" id="prev" @click="goBack"></i>
+            <i class="bi bi-arrow-left-circle" id="prev" @click="goBack" @mouseenter="stop" @mouseleave="start"></i>
             <div class="gallery">
                 <figure v-for="(img,i) in images" v-show=" currentIndex === i" >
-                    <img :src="img.image" :alt="img.text">
+                    <img :src="img.image" :alt="img.text"  @mouseenter="stop" @mouseleave="start">
                     <figcaption>
                         <h1>{{img.title}}</h1>
                         <p>{{img.text}}</p> 
                     </figcaption>
                 </figure>
             </div>
-            <i class="bi bi-arrow-right-circle" id="next" @click="goNext"></i>
+            <i class="bi bi-arrow-right-circle" id="next" @click="goNext" @mouseenter="stop" @mouseleave="start"></i>
         </div>
         <div id="thumbnails">
             <img v-for="(img,i) in images" :src="img.image" alt=""
-            :class="{opacity : currentIndex === i}">
+            :class="{opacity : currentIndex === i}" @click="setImg(i)" @mouseenter="stop" @mouseleave="start">
             </div>
         </div>
     </div>

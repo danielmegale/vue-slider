@@ -3,6 +3,7 @@ const app = Vue.createApp({
     name: 'Careousel',
     data() {
         return{
+            interval:null,
             currentIndex:0,
             images:[
                 {
@@ -33,13 +34,41 @@ const app = Vue.createApp({
             ]
         };
     },
+    computed:{
+        islast(){
+            return this.currentIndex===this.images.length -1;
+        },
+        inFirst(){
+            return this.currentIndex===0;
+        }
+    },
     methods:{
         goNext(){
-            this.currentIndex++;
+            if(this.islast){
+                this.currentIndex=0;
+            }else{
+                this.currentIndex++;
+            }
         },
         goBack(){
-            this.currentIndex--;
+            if(this.inFirst){
+                this.currentIndex=this.images.length -1
+            }else{
+                this.currentIndex--;
+            }
+        },
+        setImg(targetImg){
+            this.currentIndex = targetImg
+        },
+        stop(){
+            clearInterval(this.interval);
+        },
+        start(){
+            this.interval =setInterval(this.goNext,2000)
         }
+    },
+    mounted(){
+    this.interval =setInterval(this.goNext,2000)
     }
 });
 
